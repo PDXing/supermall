@@ -1,0 +1,45 @@
+<template>
+  <div class="cart">
+    <nav-bar class="cart-nav">
+      <div slot="center">购物车({{ cartLength }})</div>
+    </nav-bar>
+    <cart-list />
+    <cart-bottom-bar />
+  </div>
+</template>
+
+<script>
+import NavBar from 'components/common/navbar/NavBar'
+
+import CartList from './childComps/CartList'
+import CartBottomBar from './childComps/CartBottomBar'
+
+import { mapGetters } from 'vuex'
+
+export default {
+  name: 'Cart',
+  components: {
+    NavBar,
+    CartList,
+    CartBottomBar,
+  },
+  computed: {
+    ...mapGetters(['cartLength', 'cartList']),
+  },
+  activated() {
+    // this.cartList = this.$store.getters.cartList
+    console.log(this.cartList)
+  },
+}
+</script>
+
+<style scoped>
+.cart-nav {
+  background-color: var(--color-tint);
+  color: #fff;
+}
+.cart {
+  /*height: 100vh;*/
+  position: relative;
+}
+</style>
